@@ -15,6 +15,8 @@ class Supermarket : public Item {
     public:
         // Constructor (name, amount, price)
         Supermarket(std::string, int, double);
+        // Copy Constructor
+        Supermarket(const Supermarket& other);
         // Destructor
         ~Supermarket();
         // Methods

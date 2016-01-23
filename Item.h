@@ -13,11 +13,13 @@ class Item {
     public:
         // Constructor (amount, price))
         Item(int, double);
+        // Copy Constructor
+        Item(const Item& other);
         // Destructor
         virtual ~Item();
         // Methods
         virtual double pvp();
-        std::string toString();
+        virtual std::string toString();
 
     protected:
         // Getters

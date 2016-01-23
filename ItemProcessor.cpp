@@ -19,7 +19,7 @@ using namespace std;
 
 // Constructor
 ItemProcessor::ItemProcessor() {
-    items = vector<Item>();
+    items = vector<Item*>();
 }
 
 // Destructor
@@ -56,16 +56,19 @@ void ItemProcessor::load(string index) {
 double ItemProcessor::pvp() {
     double count = 0;
     for (int i = 0; i < items.size(); i++) {
-        count += items.at(i).pvp();
+        count += items.at(i)->pvp();
     }
     return count;
 }
 
 string ItemProcessor::generateTicket() {
-    string ticket = "\nTICKET COMPRA\n";
+    string ticket = "\n\nTICKET COMPRA\n";
     for (int i = 0; i < items.size(); i++) {
-        ticket += items.at(i).toString() + "\n";
+        ticket += "\t" + items.at(i)->toString() + "\n";
     }
+    ostringstream strs;
+    strs << pvp();
+    ticket += "Precio total: " + strs.str() + "\n";
     return ticket;
 }
 
@@ -82,48 +85,33 @@ vector<string> ItemProcessor::split(string line, char sep) {
 
 void ItemProcessor::addItem(vector<string> line) {
     int type = atoi(line.at(0).c_str());
-    cout << "\nNuevo objeto: ";
     switch(type) {
-        case 1: {
-            cout << "book" << endl;
+        case 1: { // Book
             string title = line.at(1);
-            cout << "\ttitle: " << title << endl;
             string author = line.at(2);
-            cout << "\tauthor: " << author << endl;
             double price = atof(line.at(3).c_str());
-            cout << "\tamount: 1" << endl;
-            cout << "\tprice: " << price << endl;
-            Book book = Book(title, author, price);
+
+            Book* book = new Book(title, author, price);
             items.push_back(book);
-            cout << "<COMPROBACIÓN> " << items.back().toString() << endl << endl;
             break;
         }
-        case 2: {
-            cout << "super" << endl;
+        case 2: { // Supermarket
             string name = line.at(1);
-            cout << "\tname: " << name << endl;
             int amount = atoi(line.at(2).c_str());
-            cout << "\tamount: " << amount << endl;
             double price = atof(line.at(3).c_str());
-            cout << "\tprice: " << price << endl;
-            Supermarket supermarket = Supermarket(name, amount, price);
+
+            Supermarket* supermarket = new Supermarket(name, amount, price);
             items.push_back(supermarket);
-            cout << "<COMPROBACIÓN> " << items.back().toString() << endl << endl;
             break;
         }
-        case 3: {
-            cout << "toy" << endl;
+        case 3: { // Toy
             string brand = line.at(1);
-            cout << "\tbrand: " << brand << endl;
             string model = line.at(2);
-            cout << "\tmodel: " << model << endl;
             int amount = atoi(line.at(3).c_str());
-            cout << "\tamount: " << amount << endl;
             double price = atof(line.at(4).c_str());
-            cout << "\tprice: " << price << endl;
-            Toy toy = Toy(brand, model, amount, price);
+
+            Toy* toy = new Toy(brand, model, amount, price);
             items.push_back(toy);
-            cout << "<COMPROBACIÓN> " << items.back().toString() << endl << endl;
             break;
         }
         default:

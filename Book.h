@@ -15,6 +15,8 @@ class Book : public Item {
     public:
         // Constructor (title, author, price))
         Book(std::string, std::string, double);
+        // Copy Constructor
+        Book(const Book& other);
         // Destructor
         ~Book();
         // Methods

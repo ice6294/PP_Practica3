@@ -3,13 +3,18 @@
  * Author: luis
  */
 
+#include <sstream>
+
 #include "Book.h"
-#include "Item.h"
 
 using namespace std;
 
 // Constructor (title, author, price))
 Book::Book(string t, string a, double p): title(t), author(a), Item(1, p) {
+}
+
+// Copy Constructor
+Book::Book(const Book& other): title(other.title), author(other.author), Item(other) {
 }
 
 // Destructor
@@ -22,5 +27,9 @@ double Book::pvp() {
 }
 
 string Book::toString() {
-    return "Libro: " + title; // + pvp;
+    string str = "Libro: " + title + " ";
+    ostringstream strs;
+    strs << pvp();
+    str += strs.str();
+    return str;
 }

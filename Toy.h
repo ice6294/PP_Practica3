@@ -15,6 +15,8 @@ class Toy : public Item {
     public:
         // Constructor
         Toy(std::string, std::string, int, double);
+        // Copy Constructor
+        Toy(const Toy& other);
         // Destructor
         ~Toy();
         // Methods

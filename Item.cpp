@@ -3,12 +3,18 @@
  * Author: luis
  */
 
+#include <sstream>
+
 #include "Item.h"
 
 using namespace std;
 
 // Constructor
 Item::Item(int a, double p): amount(a), price(p) {
+}
+
+// Copy Constructor
+Item::Item(const Item& other): amount(other.amount), price(other.price) {
 }
 
 // Destructor
@@ -31,7 +37,8 @@ double Item::pvp() {
 
 string Item::toString() {
     string str = "Item";
+    ostringstream strs;
+    strs << pvp();
+    str += strs.str();
     return str;
 }
-
-// Private Methods

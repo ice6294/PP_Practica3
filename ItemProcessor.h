@@ -23,7 +23,7 @@ class ItemProcessor {
 
     private:
         // Attributes
-        std::vector<Item> items;
+        std::vector<Item*> items;
         // Private Methods
         std::vector<std::string> split(std::string, char);
         void addItem(std::vector<std::string>);

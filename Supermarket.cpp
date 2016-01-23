@@ -3,12 +3,18 @@
  * Author: luis
  */
 
+#include <sstream>
+
 #include "Supermarket.h"
 
 using namespace std;
 
 // Constructor
 Supermarket::Supermarket(string n, int a, double p): name(n), Item(a, p) {
+}
+
+// Copy Constructor
+Supermarket::Supermarket(const Supermarket& other): name(other.name), Item(other) {
 }
 
 // Destructor
@@ -21,7 +27,11 @@ double Supermarket::pvp() {
 }
 
 string Supermarket::toString() {
-    return "Supermarket: " + /*amount*/ name; // + pvp
+    string str = "Supermarket: ";
+    ostringstream strs;
+    strs << this->getAmount();
+    str += strs.str() + " " + name + " ";
+    strs << pvp();
+    str += strs.str();
+    return  str;
 }
-
-// Private Methods
