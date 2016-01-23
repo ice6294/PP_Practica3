@@ -23,15 +23,16 @@ Supermarket::~Supermarket() {
 
 // Public Methods
 double Supermarket::pvp() {
-    return this->getPrice() * 1.08;
+    return this->getAmount() * this->getPrice() * 1.08;
 }
 
 string Supermarket::toString() {
     string str = "Supermarket: ";
-    ostringstream strs;
-    strs << this->getAmount();
-    str += strs.str() + " " + name + " ";
-    strs << pvp();
-    str += strs.str();
+    ostringstream strs1;
+    strs1 << this->getAmount();
+    str += strs1.str() + " " + name + " ";
+    ostringstream strs2;
+    strs2 << pvp();
+    str += strs2.str();
     return  str;
 }

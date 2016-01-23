@@ -23,14 +23,17 @@ Toy::~Toy() {
 
 // Public Methods
 double Toy::pvp() {
-    return this->getPrice() * 1.21;
+    double p = this->getAmount() * this->getPrice() * 1.21;
+    return p;
 }
 
 string Toy::toString() {
     string str = "Toy: ";
-    ostringstream strs;
-    strs << this->getAmount();
-    str += strs.str() + " " + model + " ";
-    strs << pvp();
+    ostringstream strs1;
+    strs1 << this->getAmount();
+    str += strs1.str() + " " + model + " ";
+    ostringstream strs2;
+    strs2 << pvp();
+    str += strs2.str();
     return str;
 }

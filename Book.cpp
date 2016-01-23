@@ -23,7 +23,7 @@ Book::~Book() {
 
 // Public Methods
 double Book::pvp() {
-    return this->getPrice() * 1.16;
+    return (this->getAmount() * this->getPrice() * 1.16);
 }
 
 string Book::toString() {
