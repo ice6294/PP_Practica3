@@ -44,7 +44,7 @@ void ItemProcessor::load(string index) {
         for(int i = 0; i < lines; i++) {
             getline(in, str);
             vector<string> line = ItemProcessor::split(str, sep);
-            ItemProcessor::addItem(line);
+            addItem(line);
         }
 
     } catch(exception& e) {
